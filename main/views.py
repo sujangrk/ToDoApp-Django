@@ -10,7 +10,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import Task
 
-# Custom login view using Django's built-in LoginView
+# Create your views here.
+
 class CustomLoginView(LoginView):
     template_name = 'main/login.html'
     fields = '__all__'
@@ -19,10 +20,12 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('task_list')
 
-# View to display all tasks for the logged-in user
+
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
+    login_url = 'login-page'
+    template_name = 'main/task_list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,36 +37,10 @@ class TaskList(LoginRequiredMixin, ListView):
             context['tasks'] = context['tasks'].filter(title__icontains=search_input)
 
         context['search_input'] = search_input
+
         return context
 
-# View to display details of a single task
-class TaskDetail(LoginRequiredMixin, DetailView):
-    model = Task
-    context_object_name = 'task'
 
-# View to create a new task
-class TaskCreate(LoginRequiredMixin, CreateView):
-    model = Task
-    fields = ['title', 'description', 'complete']
-    success_url = reverse_lazy('task_list')
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
-# View to update an existing task
-class TaskUpdate(LoginRequiredMixin, UpdateView):
-    model = Task
-    fields = ['title', 'description', 'complete']
-    success_url = reverse_lazy('task_list')
-
-# View to delete a task
-class TaskDelete(LoginRequiredMixin, DeleteView):
-    model = Task
-    context_object_name = 'task'
-    success_url = reverse_lazy('task_list')
-
-# User registration view
 class RegisterPage(FormView):
     template_name = 'main/register.html'
     form_class = UserCreationForm
@@ -72,11 +49,34 @@ class RegisterPage(FormView):
 
     def form_valid(self, form):
         user = form.save()
-        if user:
+        if user is not None:
             login(self.request, user)
-        return super().form_valid(form)
+        return super(RegisterPage, self).form_valid(form)
 
-    def get(self, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return redirect('task_list')
-        return super().get(*args, **kwargs)
+
+class TaskDetail(LoginRequiredMixin, DetailView):
+    model = Task
+    context_object_name = 'task'
+    template_name = 'main/task.html'
+
+
+class TaskCreate(LoginRequiredMixin, CreateView):
+    model = Task
+    fields = ['title', 'description', 'complete']
+    success_url = reverse_lazy('task_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskCreate, self).form_valid(form)
+
+
+class TaskUpdate(LoginRequiredMixin, UpdateView):
+    model = Task
+    fields = ['title', 'description', 'complete']
+    success_url = reverse_lazy('task_list')
+
+
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
+    model = Task
+    context_object_name = 'task'
+    success_url = reverse_lazy('task_list')
