@@ -1,112 +1,56 @@
-## Project Documentation: ToDo App ##
+# ToDo App – Project Documentation
 
-This documentation provides an overview of the ToDo app, a simple task management application developed using Django, Python's web framework. The app allows users to create, update, and delete tasks, as well as mark tasks as completed. It includes user authentication, allowing each user to manage their own tasks securely.
+> 📁 *This project was developed and contributed to as part of the WIL Project deliverables for the Full Stack Software Development program (CPL-5559-FSDS).*
 
-## Table of Contents
+A beginner-friendly task management web application built with Django.
+
+---
+
+## 📚 Table of Contents
 
 1. [Introduction](#introduction)
 2. [Features](#features)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Contributing](#contributing)
-6. [License](#license)
+3. [Built With](#built-with)
+4. [Installation](#installation)
+5. [Usage](#usage)
+6. [Contributing](#contributing)
+7. [License](#license)
 
-### Introduction
+---
 
-This is one of my first projects in Django - a straightforward and minimalistic ToDo app! This app empowers users to track and manage their tasks efficiently, offering a clean interface that keeps distractions at bay. Stay organized and boost productivity with ease! 📝✨
+## 📝 Introduction
 
-> **Note:** This is a beginner-friendly project and may not include all advanced features. It is meant for educational purposes and to provide a foundation for learning Django.
+This is one of my first Django projects – a simple yet functional ToDo application! It helps users track and manage daily tasks with a clean, distraction-free interface. Stay organized and boost productivity effortlessly! 📝✨
 
-### Features
+> **Note:** This app is beginner-friendly and intended for educational use, showcasing Django fundamentals.
 
-- User Authentication: Users can sign up and log in to their personalized accounts, ensuring privacy and security for their tasks.
-- Task Creation: Users can add new tasks with titles, descriptions, and completion status.
-- Task List: The app displays a list of all tasks for the logged-in user, allowing easy access and management.
-- Task Detail View: Users can view individual task details, including the title, description and completion status.
-- Task Update: Users can edit task details, such as title, description, and completion status.
-- Task Deletion: Users can delete tasks they no longer need.
-- Task Search: The app includes a search feature, allowing users to find specific tasks quickly.
+---
 
-### Installation
+## 🌟 Features
 
-1. Ensure you have Python 3.x installed on your system.
-2. Clone this repository to your local machine using `git clone`.
-3. Navigate to the project directory using the terminal or command prompt.
+- **User Authentication**: Secure login and registration for personal task lists
+- **Task Creation**: Add tasks with a title and description
+- **Task List**: View all your tasks with completion status
+- **Task Detail View**: See individual task details
+- **Task Update**: Edit tasks, including status
+- **Task Deletion**: Delete tasks when done
+- **Task Search**: Quickly find tasks with a built-in search bar
 
-Create a virtual environment (optional, but recommended):
+---
 
-```bash
-python -m venv myenv
-```
+## 🛠️ Built With
 
-Activate the virtual environment:
+- Django 4.x
+- Python 3.8+
+- SQLite3 (default Django DB)
+- Bootstrap (optional UI styling)
 
-- **Windows:**
+---
 
-```bash
-myenv\Scripts\activate
-```
+## ⚙️ Installation
 
-- **Linux / macOS:**
-
-```bash
-source myenv/bin/activate
-```
-
-Install the required dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-> **Note:** The `requirements.txt` file includes all the necessary dependencies for the project. Make sure to have them installed in your virtual environment.
-
-## Important: Generate Your Own Secret Key ##
-**_For security reasons, we have used environment variables to store sensitive information. One such variable is DJANGO_SECRET_KEY, which is crucial for Django's security._**
-
-**_To generate your own secret key, open a Python shell and run the following code:_**
-
-```
-import secrets
-
-new_secret_key = secrets.token_hex(32)
-print(new_secret_key)
-```
-**_Copy the generated key and set it in this format (SECRET_KEY = 'YOUR_SECRET_KEY'). Remember to keep your secret key private and avoid sharing it publicly._**
-
-### Usage
-
-1. Before running the application, create and apply the initial database migrations:
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
-
-2. Create a superuser to access the Django admin panel (if needed):
-
-```bash
-python manage.py createsuperuser
-```
-
-3. Run the development server:
-
-```bash
-python manage.py runserver
-```
-
-4. Open your web browser and navigate to `http://127.0.0.1:8000/` to access the ToDo app.
-
-### Contributing
-
-We welcome contributions to the ToDo app! If you have any suggestions, bug fixes, or new features to propose, please follow these steps:
-
-1. Fork the repository on GitHub.
-2. Create a new branch for your feature or bug fix.
-3. Implement your changes and tests, if applicable.
-4. Commit your changes and push them to your fork.
-5. Create a pull request to the main repository's `main` branch.
-
-### License
-
-The ToDo app is open-source software released under the [MIT License](https://opensource.org/licenses/MIT). You are free to use, modify, and distribute the code for personal and commercial purposes.
+1. Ensure **Python 3.x** is installed
+2. Clone this repository:
+   ```bash
+   git clone https://github.com/your-username/ToDoApp-Django.git
+   cd ToDoApp-Django
